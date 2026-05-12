@@ -1,0 +1,13 @@
+Universitas Terbuka adalah sebuah perguruan tinggi terbuka yang memberikan kesempatan bagi putra putri bangsa untuk menimba ilmu dan pengetahuan. UT memiliki mahasiswa dengan latar belakang yang beragam. Mahasiswanya tidak terbatas pada lulusan baru dari sma/smu/smk sederajat. Beberapa diantaranya bahkan telah/sedang bekerja. Kondisi tersebut memberikan kesulitan bagi pihak kampus dalam menerapkan strategi untuk membantu mahasiswa berhasil melewati masa kuliah dan lulus tepat waktu.
+Sebagai seorang Machine Learning engineer, kamu diminta untuk membuat model yang mampu mendeteksi secara dini tingkat risiko kegagalan seorang mahasiswa. Dengan harapan jika sistem mampu memberikan informasi yang valid, maka bagian wali akademik dapat memberikan konseling yang tepat. Untuk melaksanakan tugasmu ini, kamu diberikan data yang bersumber dari dua periode penerimaan.
+
+Petunjuk Pengerjaan:
+Kerjakan tugas2 ini secara berurutan dengan mengacu pada google colab terlampir (Tugas2.ipynb) untuk menyelesaikan tugas 2 ini.
+langkah-langkah:
+1. download file Tugas2.ipynb
+2. upload pada gogole colab masing-masing
+3. download file dataset Data Siswa Periode 1.csv dan Data Siswa Periode 2.csv
+4. kerjakan via google colab dan rename menjadi Tugas2 _Nama Mahasiswa. ipynb
+5. kumpulkan file yang sudah dikerjakan dengan opsi:
+a. menginfokan link tugas dari google colab pada form pengumpulan tugas tuton
+b. mengungah file ipynb Tugas2 _Nama Mahasiswa. ipynb pada form upload Tuton
