@@ -1,1 +1,100 @@
 https://github.com/Yan-ac1/tugas.git
+
+
+for X, y, name in zip(Xx, yy, model_names):
+    print(f" JALANAN MODEL: {name} ")
+    
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+    
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
+    y_pred = model.predict(X_test_scaled)
+    print("Akurasi Testing:", accuracy_score(y_test, y_pred))
+    print("\nConfusion Matrix:")
+    print(confusion_matrix(y_test, y_pred))
+    print("\nClassification Report:")
+    print(classification_report(y_test, y_pred))
+
+    kf = KFold(n_splits=5, shuffle=True, random_state=42)
+    X_scaled_all = scaler.fit_transform(X)
+    cv_scores = cross_val_score(model, X_scaled_all, y, cv=kf)
+    print(f"\nAkurasi Cross-Validation: {cv_scores}")
+    print(f"Rata-rata CV: {cv_scores.mean():.4f}")
+
+    # Cek Overfitting / Underfitting
+    train_acc = model.score(X_train_scaled, y_train)
+    test_acc = model.score(X_test_scaled, y_test)
+    print(f"\nAkurasi Training: {train_acc:.4f}")
+    print(f"Akurasi Testing: {test_acc:.4f}")
+
+    if train_acc > test_acc + 0.1:
+        print("-> Model kemungkinan OVERFITTING")
+    elif test_acc > train_acc + 0.1:
+        print("-> Model kemungkinan UNDERFITTING")
+    else:
+        print("-> Model dalam batas wajar (Good Fit)")
+
+    # Plot Fitur Penting (Feature Importances)
+    plt.figure(figsize=(8, 5))
+    importances = model.feature_importances_
+    feat_names = X.columns
+    # Sorting fitur agar plotnya rapi dari yang paling penting
+    indices = importances.argsort()[::-1]
+    sns.barplot(x=importances[indices], y=feat_names[indices])
+    plt.title(f"Fitur Penting Random Forest - {name}")
+    plt.xlabel("Skor Kepentingan")
+    plt.tight_layout()
+    plt.show()
+
+
+if 'ip_semester_1' in dfg_clean.columns and 'ip_semester_2' in dfg_clean.columns:
+    plt.figure(figsize=(8, 6))
+    plot_df = dfg_clean.copy()
+    target_map = {0: 'Gagal', 1: 'Lulus Tepat Waktu', 2: 'Lulus Tidak Tepat Waktu'}
+    plot_df['Target_Label'] = plot_df['target'].map(target_map)
+    
+    sns.scatterplot(
+        data=plot_df, 
+        x='ip_semester_1', 
+        y='ip_semester_2', 
+        hue='Target_Label', 
+        palette='Set1', 
+        alpha=0.7,
+        edgecolor='w'
+    )
+    plt.title("Analisis Sebaran: IP Semester 1 vs IP Semester 2 Berdasarkan Target")
+    plt.xlabel("IP Semester 1")
+    plt.ylabel("IP Semester 2")
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.legend(title="Status Kelulusan")
+    plt.tight_layout()
+    plt.show()
+
+# Scatter Plot 2: Nilai SMA vs Ujian Masuk Berdasarkan Status Beasiswa
+if 'nilai_sma' in dfg_clean.columns and 'nilai_ujian_masuk' in dfg_clean.columns:
+    plt.figure(figsize=(8, 6))
+    plot_df = dfg_clean.copy()
+    beasiswa_map = {0: 'Tidak', 1: 'Ya'}
+    plot_df['beasiswa_Label'] = plot_df['beasiswa'].map(beasiswa_map)
+    
+    sns.scatterplot(
+        data=plot_df, 
+        x='nilai_sma', 
+        y='nilai_ujian_masuk', 
+        hue='beasiswa_Label', 
+        palette='Set1', 
+        alpha=0.7,
+        edgecolor='w'
+    )
+    plt.title("Analisis Sebaran: Nilai SMA vs Nilai Ujian Masuk Berdasarkan Status Beasiswa")
+    plt.xlabel("Nilai SMA")
+    plt.ylabel("Nilai Ujian Masuk")
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.legend(title="Status Beasiswa")
+    plt.tight_layout()
+    plt.show()
+
