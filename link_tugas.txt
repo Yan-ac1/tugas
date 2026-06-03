@@ -1,0 +1,3 @@
+https://github.com/Yan-ac1/tugas.git
+
+https://colab.research.google.com/github/Yan-ac1/tugas/blob/master/Tugas2_Marselinus_Yansen.ipynb
